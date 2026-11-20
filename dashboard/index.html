@@ -23,10 +23,53 @@ button,select{font:inherit}.shell{min-height:100vh}.sidebar{position:fixed;inset
 a{color:inherit;text-decoration:none}
 @media(max-width:1150px){.sidebar{width:205px}.main{margin-left:205px}.content{padding:25px 22px}.topbar{padding:0 22px}.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr)) auto}.chart-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){.sidebar{position:static;width:auto;height:auto;padding:12px 15px;display:block}.brand{padding:0}.brand-mark{width:32px;height:32px}.brand-sub,.nav-label,.nav-item,.sidebar-bottom{display:none}.main{margin:0}.topbar{height:48px;padding:0 16px}.content{padding:20px 14px 28px}.heading{align-items:flex-start;flex-direction:column;margin-bottom:17px}.heading h1{font-size:22px}.date-chip{display:none}.filter-grid{grid-template-columns:1fr 1fr}.reset{grid-column:span 2;width:100%}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{min-height:104px;padding:13px}.kpi-value{font-size:20px}.kpi:last-child{grid-column:span 2}.chart-grid,.lower-grid{grid-template-columns:1fr}.chart-card{padding:15px}.canvas-wrap{height:205px}.lower-grid .canvas-wrap{height:185px}.section-row{margin-top:20px}.footer{flex-direction:column}.live{display:none}}
+
+/* Visual system: dark executive management dashboard */
+:root{--bg:#041321;--surface:#071d30;--ink:#f2f7fc;--muted:#9bb0c4;--line:#16415c;--navy:#03101e;--navy2:#08243a;--teal:#19d3c5;--cyan:#23b8ed;--blue:#168ff0;--amber:#f6b84b;--red:#f0788b;--shadow:0 14px 36px rgba(0,0,0,.24);--radius:17px}
+body{background:radial-gradient(ellipse at 82% 0%,#07375a 0%,#041a2c 38%,#03111f 78%);color:var(--ink)}
+.sidebar{background:linear-gradient(180deg,#041323 0%,#061b2d 100%);border-right:1px solid #0c3953}
+.brand-mark{border-radius:50%;background:linear-gradient(145deg,#13d7dc,#168ff0);color:#031525;box-shadow:0 0 24px #14b8e64a}
+.brand-name{color:#f2f8ff}.brand-sub{color:#5f8da8}
+.nav-label{color:#5d819a}.nav-item{color:#9bb5c9}.nav-item.active{background:linear-gradient(90deg,#0878a7aa,#0c4560aa);box-shadow:inset 3px 0 #21d7eb;color:#fff}
+.sidebar-bottom{border-color:#16415c;color:#7e9db5}
+.topbar{background:#041727e8;border-color:#16415c}
+.crumb{color:#84a1b8}.crumb b{color:#f1f7fd}.live{color:#9db7ca}.avatar{background:#0b3b56;color:#5ce4e1}
+.content{max-width:1540px}
+.eyebrow{color:#26d6d0}.heading h1{color:#f4f9ff}.heading p{color:#9cb4c7}
+.date-chip{background:#08243a;border-color:#1b4d68;color:#a9c5d8}
+.disclaimer{background:#09243a;border-color:#14506b;color:#a6c5d8}.disclaimer strong{color:#65e4e0}
+.status{color:#80a4bc}
+.filters,.kpi,.chart-card{background:linear-gradient(145deg,#08243a,#061a2b);border:1px solid #15506e;box-shadow:0 10px 30px #0004,inset 0 1px #ffffff08}
+.filter-title{color:#eaf8ff}.filter-title span{color:#2ed9d0}.filter-hint,.field label{color:#83a6bd}
+.field select{background:#041827;border-color:#1b4c67;color:#e4f2fc}
+.field select:focus{border-color:#21d6d0;box-shadow:0 0 0 3px #21d6d01c}
+.reset{background:#07334a;border-color:#14718a;color:#65e9e2}.reset:hover{background:#0b4960}
+.filter-state{color:#83a6bd}
+.section-title{color:#eaf6ff}.section-note{color:#7e9db4}
+.kpi{background:linear-gradient(145deg,#082a43,#061b2e);border-color:#12618a}
+.kpi:after{background:#12bde51a}
+.kpi-label{color:#9bbbd0}.kpi-icon{background:#0b4960;color:#4fe4e3}
+.kpi-value{color:#fff}.kpi-foot{color:#8ba9bd}
+.kpis .kpi:nth-child(1){background:linear-gradient(145deg,#073c55,#06233a);border-color:#087ca0}
+.kpis .kpi:nth-child(2){background:linear-gradient(145deg,#06432f,#062a2b);border-color:#07865e}
+.kpis .kpi:nth-child(2) .kpi-icon{background:#07583e;color:#53efb2}
+.kpis .kpi:nth-child(3){background:linear-gradient(145deg,#25205b,#111c43);border-color:#5542a7}
+.kpis .kpi:nth-child(3) .kpi-icon{background:#392b79;color:#c3a8ff}
+.kpis .kpi:nth-child(4){background:linear-gradient(145deg,#50351a,#302117);border-color:#a36b27}
+.kpis .kpi:nth-child(4) .kpi-icon{background:#69451d;color:#ffc75d}
+.kpis .kpi:nth-child(5){background:linear-gradient(145deg,#073c5e,#09223f);border-color:#126eaa}
+.kpis .kpi:nth-child(5) .kpi-icon{background:#0a4a70;color:#6ad7ff}
+.insight{background:linear-gradient(100deg,#073c49,#092943);border-color:#126477}
+.insight-icon{background:#0d5360;color:#54f0e3}.insight strong{color:#eaffff}.insight p{color:#a8c6d8}
+.chart-head h3{color:#edf8ff}.chart-head p{color:#8daec3}.chart-tag{background:#0b344d;color:#74c9dd}
+.footer{border-color:#16415c;color:#7998b0}.footer b{color:#b9d9eb}
+a{color:#58d9e2}
+@media(max-width:760px){.sidebar{background:linear-gradient(90deg,#041323,#08243a);border-bottom:1px solid #16415c}.topbar{background:#041727e8}}
+
 </style></head>
 <body><div class="shell">
 <aside class="sidebar">
- <div class="brand"><div class="brand-mark">II</div><div><div class="brand-name">Insurance Intelligence</div><div class="brand-sub">BUSINESS ANALYTICS</div></div></div>
+ <div class="brand"><div class="brand-mark">▥</div><div><div class="brand-name">Insurance Intelligence</div><div class="brand-sub">BUSINESS ANALYTICS</div></div></div>
  <div class="nav-label">WORKSPACE</div>
  <div class="nav-item active"><span class="nav-icon">▦</span> Visão gerencial</div>
  <div class="nav-item"><span class="nav-icon">◷</span> Produção comercial</div>
@@ -36,7 +79,7 @@ a{color:inherit;text-decoration:none}
 <div class="main">
  <div class="topbar"><div class="crumb">Workspace&nbsp; / &nbsp;<b>Visão gerencial</b></div><div class="top-right"><div class="live"><span class="dot"></span> Base sintética carregada</div><div class="avatar">II</div></div></div>
  <main class="content">
-  <div class="heading"><div><div class="eyebrow">Management overview</div><h1>Painel de inteligência comercial</h1><p>Acompanhamento gerencial de produção, conversão, renovações e desempenho da carteira.</p></div><div class="date-chip">▦ &nbsp; Exercício de referência: 2025</div></div>
+  <div class="heading"><div><div class="eyebrow">INSURANCE INTELLIGENCE · MANAGEMENT OVERVIEW</div><h1>Visão Gerencial</h1><p>Acompanhamento gerencial de produção, conversão, renovações e desempenho da carteira.</p></div><div class="date-chip">▦ &nbsp; Exercício de referência: 2025</div></div>
   <div class="disclaimer"><span class="i">ⓘ</span><div><strong>Ambiente independente e educacional.</strong> Todos os dados, equipes, unidades, produtos e resultados são fictícios. Este projeto não possui vínculo, patrocínio, endosso ou integração com o Itaú ou qualquer outra instituição financeira.</div></div>
   <div class="status" id="loadStatus">Carregando dados e preparando indicadores...</div>
   <section class="filters">
