@@ -9,7 +9,10 @@ O Insurance Intelligence simula uma operação de seguros com dados inteiramente
 Demonstrar, em um cenário simulado, como dados estruturados e ferramentas analíticas podem apoiar a leitura de desempenho, identificação de tendências e discussão de oportunidades comerciais.
 
 ## Demonstração
-O protótipo interativo do dashboard será disponibilizado neste repositório em **dashboard/**. Para executá-lo localmente, baixe o arquivo HTML e abra-o em um navegador moderno. A publicação web depende da ativação do GitHub Pages após a disponibilização do dashboard.
+- **[Abrir dashboard demonstrativo](https://1mperador027.github.io/insurance-intelligence/)** — página web resumida, com indicadores e gráficos ilustrativos.
+- **[Ver código do dashboard](dashboard/index.html)**.
+
+A publicação pelo GitHub Pages depende da ativação da fonte **GitHub Actions** em Settings → Pages. Os valores exibidos na página web resumida são exemplos sintéticos e não substituem a base analítica completa.
 
 ## Conteúdo do projeto
 - **Dashboard interativo:** filtros por período, produto, equipe e unidade; indicadores, gráficos e tabela gerencial.
