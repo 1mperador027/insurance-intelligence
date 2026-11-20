@@ -66,6 +66,12 @@ body{background:radial-gradient(ellipse at 82% 0%,#07375a 0%,#041a2c 38%,#03111f
 a{color:#58d9e2}
 @media(max-width:760px){.sidebar{background:linear-gradient(90deg,#041323,#08243a);border-bottom:1px solid #16415c}.topbar{background:#041727e8}}
 
+
+.view-switch{display:flex;align-items:center;gap:4px;padding:4px;border:1px solid #1b5875;background:#041827;border-radius:11px}
+.view-switch button{border:0;background:transparent;color:#8fb0c5;padding:8px 12px;border-radius:8px;font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap}
+.view-switch button.active{background:linear-gradient(120deg,#087eae,#0b536f);color:#fff;box-shadow:0 3px 12px #0004}
+.heading-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+@media(max-width:760px){.heading-actions{width:100%;justify-content:space-between}.view-switch{flex:1}.view-switch button{flex:1;padding:9px 6px}}
 </style></head>
 <body><div class="shell">
 <aside class="sidebar">
@@ -79,7 +85,7 @@ a{color:#58d9e2}
 <div class="main">
  <div class="topbar"><div class="crumb">Workspace&nbsp; / &nbsp;<b>Visão gerencial</b></div><div class="top-right"><div class="live"><span class="dot"></span> Base sintética carregada</div><div class="avatar">II</div></div></div>
  <main class="content">
-  <div class="heading"><div><div class="eyebrow">INSURANCE INTELLIGENCE · MANAGEMENT OVERVIEW</div><h1>Visão Gerencial</h1><p>Acompanhamento gerencial de produção, conversão, renovações e desempenho da carteira.</p></div><div class="date-chip">▦ &nbsp; Exercício de referência: 2025</div></div>
+  <div class="heading"><div><div class="eyebrow">INSURANCE INTELLIGENCE · BUSINESS INTELLIGENCE</div><h1 id="viewTitle">Visão Executiva</h1><p id="viewDescription">Leitura estratégica dos resultados, indicadores e oportunidades do negócio.</p></div><div class="heading-actions"><div class="view-switch" role="group" aria-label="Selecionar visão do negócio"><button type="button" id="executiveMode" class="active" aria-pressed="true">Visão Executiva</button><button type="button" id="managementMode" aria-pressed="false">Visão Gerencial</button></div><div class="date-chip">▦ &nbsp; Exercício de referência: 2025</div></div></div>
   <div class="disclaimer"><span class="i">ⓘ</span><div><strong>Ambiente independente e educacional.</strong> Todos os dados, equipes, unidades, produtos e resultados são fictícios. Este projeto não possui vínculo, patrocínio, endosso ou integração com o Itaú ou qualquer outra instituição financeira.</div></div>
   <div class="status" id="loadStatus">Carregando dados e preparando indicadores...</div>
   <section class="filters">
@@ -92,7 +98,7 @@ a{color:#58d9e2}
     <button class="reset" id="resetFilters" type="button">↺ &nbsp; Limpar filtros</button>
    </div><div class="filter-state" id="filterState">Exibindo toda a base • 2025</div>
   </section>
-  <div class="section-row"><div class="section-title">Indicadores-chave de desempenho</div><div class="section-note">Atualizados conforme os filtros selecionados</div></div>
+  <div class="section-row"><div class="section-title" id="kpiSectionTitle">Indicadores estratégicos do negócio</div><div class="section-note">Atualizados conforme os filtros selecionados</div></div>
   <section class="kpis">
    <div class="kpi" style="--tint:#e5f7f4;--accent:#159b8c"><div class="kpi-top"><div class="kpi-label">PRÊMIO EMITIDO</div><div class="kpi-icon">R$</div></div><div class="kpi-value" id="kpiPremium">—</div><div class="kpi-foot">Volume de prêmio das apólices no recorte</div></div>
    <div class="kpi" style="--tint:#edf2ff;--accent:#547ee8"><div class="kpi-top"><div class="kpi-label">APÓLICES EMITIDAS</div><div class="kpi-icon">▤</div></div><div class="kpi-value" id="kpiPolicies">—</div><div class="kpi-foot">Contratos simulados emitidos</div></div>
@@ -100,14 +106,14 @@ a{color:#58d9e2}
    <div class="kpi" style="--tint:#f2edff;--accent:#8867c7"><div class="kpi-top"><div class="kpi-label">TAXA DE CONVERSÃO</div><div class="kpi-icon">↗</div></div><div class="kpi-value" id="kpiConversion">—</div><div class="kpi-foot">Propostas emitidas ÷ propostas registradas</div></div>
    <div class="kpi" style="--tint:#eaf5ff;--accent:#4387bd"><div class="kpi-top"><div class="kpi-label">TAXA DE RENOVAÇÃO</div><div class="kpi-icon">↻</div></div><div class="kpi-value" id="kpiRenewal">—</div><div class="kpi-foot" id="renewalFoot">Renovadas ÷ eventos de renovação</div></div>
   </section>
-  <div class="insight"><div class="insight-icon">✧</div><div><strong>Leitura gerencial do recorte</strong><p id="insight">Os principais destaques serão calculados após o carregamento da base.</p></div></div>
-  <div class="section-row"><div class="section-title">Desempenho comercial</div><div class="section-note">Valores e quantidades simulados</div></div>
+  <div class="insight"><div class="insight-icon">✧</div><div><strong id="insightTitle">Resumo executivo do recorte</strong><p id="insight">Os principais destaques serão calculados após o carregamento da base.</p></div></div>
+  <div class="section-row"><div class="section-title" id="chartSectionTitle">Visão consolidada do negócio</div><div class="section-note" id="chartSectionNote">Tendências, composição, retenção e contribuição das equipes</div></div>
   <section class="chart-grid">
    <div class="chart-card"><div class="chart-head"><div><h3>Evolução do prêmio emitido</h3><p>Distribuição mensal do prêmio por emissão</p></div><span class="chart-tag">R$ • MENSAL</span></div><div class="canvas-wrap"><canvas id="monthly"></canvas></div></div>
    <div class="chart-card"><div class="chart-head"><div><h3>Composição por produto</h3><p>Participação no prêmio emitido</p></div><span class="chart-tag">MIX</span></div><div class="canvas-wrap"><canvas id="products"></canvas></div></div>
   </section>
   <section class="lower-grid">
-   <div class="chart-card"><div class="chart-head"><div><h3>Funil de propostas</h3><p>Distribuição por situação</p></div></div><div class="canvas-wrap"><canvas id="funnel"></canvas></div></div>
+   <div class="chart-card" id="funnelCard"><div class="chart-head"><div><h3>Funil de propostas</h3><p>Distribuição por situação</p></div></div><div class="canvas-wrap"><canvas id="funnel"></canvas></div></div>
    <div class="chart-card"><div class="chart-head"><div><h3>Resultado das renovações</h3><p>Eventos no período selecionado</p></div></div><div class="canvas-wrap"><canvas id="renewals"></canvas></div></div>
    <div class="chart-card"><div class="chart-head"><div><h3>Prêmio por equipe</h3><p>Comparativo de produção</p></div></div><div class="canvas-wrap"><canvas id="teams"></canvas></div></div>
   </section>
@@ -130,6 +136,29 @@ try{
  fill('product',db.products);fill('team',db.teams);fill('unit',db.units);
  const palette=['#12a594','#547ee8','#e5a34b','#9272c8','#54a5bc'];
  const charts={};
+ let currentMode=localStorage.getItem('ii-dashboard-mode')==='management'?'management':'executive';
+ function applyMode(mode){
+  currentMode=mode;
+  localStorage.setItem('ii-dashboard-mode',mode);
+  const executive=mode==='executive';
+  el('executiveMode').classList.toggle('active',executive);
+  el('managementMode').classList.toggle('active',!executive);
+  el('executiveMode').setAttribute('aria-pressed',String(executive));
+  el('managementMode').setAttribute('aria-pressed',String(!executive));
+  el('viewTitle').textContent=executive?'Visão Executiva':'Visão Gerencial';
+  el('viewDescription').textContent=executive?'Leitura estratégica dos resultados, indicadores e oportunidades do negócio.':'Acompanhamento da operação, produção, conversão, renovações e desempenho das equipes.';
+  el('kpiSectionTitle').textContent=executive?'Indicadores estratégicos do negócio':'Indicadores-chave de desempenho';
+  el('chartSectionTitle').textContent=executive?'Visão consolidada do negócio':'Desempenho comercial e operacional';
+  el('chartSectionNote').textContent=executive?'Tendências, composição, retenção e contribuição das equipes':'Detalhamento de propostas, renovações e produção por equipe';
+  el('insightTitle').textContent=executive?'Resumo executivo do recorte':'Leitura gerencial do recorte';
+  el('funnelCard').style.display=executive?'none':'block';
+  el('products').closest('.chart-card').querySelector('h3').textContent=executive?'Composição do portfólio':'Composição por produto';
+  el('teams').closest('.chart-card').querySelector('h3').textContent=executive?'Contribuição das equipes':'Prêmio por equipe';
+  el('renewals').closest('.chart-card').querySelector('h3').textContent=executive?'Retenção e renovação da carteira':'Resultado das renovações';
+  update();
+ }
+ el('executiveMode').addEventListener('click',()=>applyMode('executive'));
+ el('managementMode').addEventListener('click',()=>applyMode('management'));
  const baseOptions={responsive:true,maintainAspectRatio:false,animation:{duration:350},plugins:{legend:{labels:{usePointStyle:true,boxWidth:7,boxHeight:7,color:'#748397',font:{size:9},padding:14}},tooltip:{backgroundColor:'#10243b',padding:10,titleFont:{size:10},bodyFont:{size:10},displayColors:true}},layout:{padding:2}};
  const make=(id,type,labels,values,extra={})=>{
   if(charts[id]){charts[id].data.labels=labels;charts[id].data.datasets[0].data=values;charts[id].update();return}
@@ -149,11 +178,21 @@ try{
   const conversion=props.length?issued/props.length:0;
   const renewed=ren.filter(x=>x.status==='Renovada').length;
   const renewalRate=ren.length?renewed/ren.length:0;
+  const avgPremium=pol.length?premium/pol.length:0;
+  const executive=currentMode==='executive';
   el('kpiPremium').textContent=money(premium);el('kpiPolicies').textContent=num(pol.length);el('kpiProposals').textContent=num(props.length);el('kpiConversion').textContent=pct(conversion);el('kpiRenewal').textContent=pct(renewalRate);
+  const kpiCards=document.querySelectorAll('.kpis .kpi');
+  kpiCards[1].querySelector('.kpi-label').textContent=executive?'APÓLICES NA CARTEIRA':'APÓLICES EMITIDAS';
+  kpiCards[1].querySelector('.kpi-foot').textContent=executive?'Quantidade de contratos no recorte':'Contratos simulados emitidos';
+  kpiCards[2].querySelector('.kpi-label').textContent=executive?'PRÊMIO MÉDIO':'PROPOSTAS';
+  kpiCards[2].querySelector('.kpi-value').textContent=executive?money(avgPremium):num(props.length);
+  kpiCards[2].querySelector('.kpi-foot').textContent=executive?'Prêmio emitido médio por apólice':'Oportunidades registradas';
+  kpiCards[3].querySelector('.kpi-foot').textContent=executive?'Eficiência de transformação de propostas':'Propostas emitidas ÷ propostas registradas';
+  kpiCards[4].querySelector('.kpi-foot').textContent=executive?'Indicador de retenção da carteira':'Renovadas ÷ eventos de renovação';
   el('renewalFoot').textContent=num(renewed)+' renovadas de '+num(ren.length)+' eventos';
   const active=[p!=='all'?'Competência: '+p:null,prod!=='all'?'Produto: '+db.products.find(x=>x.id===prod).name:null,t!=='all'?'Equipe: '+db.teams.find(x=>x.id===t).name:null,u!=='all'?'Unidade: '+db.units.find(x=>x.id===u).name:null].filter(Boolean);
   el('filterState').textContent=active.length?'Filtros ativos: '+active.join(' · '):'Exibindo toda a base • exercício 2025';
-  el('insight').textContent=props.length?'No recorte atual, '+num(props.length)+' propostas foram registradas, com conversão de '+pct(conversion)+'. O prêmio emitido soma '+money(premium)+'. Nas renovações, '+num(renewed)+' de '+num(ren.length)+' eventos foram concluídos como renovados.':'Não há registros para a combinação de filtros selecionada. Limpe ou ajuste os filtros para visualizar os indicadores.';
+  el('insight').textContent=props.length?(currentMode==='executive'?'O negócio registra '+money(premium)+' em prêmio emitido, com conversão de '+pct(conversion)+' e renovação de '+pct(renewalRate)+'. O prêmio médio por apólice é '+money(avgPremium)+'. Indicadores calculados sobre a base sintética e os filtros ativos.':'No recorte atual, '+num(props.length)+' propostas foram registradas, com conversão de '+pct(conversion)+'. O prêmio emitido soma '+money(premium)+'. Nas renovações, '+num(renewed)+' de '+num(ren.length)+' eventos foram concluídos como renovados.'):'Não há registros para a combinação de filtros selecionada. Limpe ou ajuste os filtros para visualizar os indicadores.';
   const monthly=months.map((m,i)=>pol.filter(x=>Number(x.date.slice(5,7))===i+1).reduce((a,x)=>a+x.premium,0));
   const pLabels=db.products.map(x=>x.name),pValues=db.products.map(x=>pol.filter(y=>y.product===x.id).reduce((a,x)=>a+x.premium,0));
   const statusLabels=['Emitida','Em análise','Não convertida'],statusValues=statusLabels.map(s=>props.filter(x=>x.status===s).length);
@@ -167,7 +206,7 @@ try{
  }
  ['period','product','team','unit'].forEach(id=>el(id).addEventListener('change',update));
  el('resetFilters').addEventListener('click',()=>{['period','product','team','unit'].forEach(id=>el(id).value='all');update()});
- update();
+ applyMode(currentMode);
  el('loadStatus').textContent='Dados carregados e validados · '+num(db.proposals.length)+' propostas · '+num(db.policies.length)+' apólices · '+num(db.renewals.length)+' eventos de renovação';
 }catch(e){el('loadStatus').textContent='Não foi possível carregar os dados: '+e.message;el('loadStatus').classList.add('error');el('insight').textContent='Verifique a conexão e recarregue a página. Os arquivos CSV também estão disponíveis para download.';console.error(e)}
 })();
