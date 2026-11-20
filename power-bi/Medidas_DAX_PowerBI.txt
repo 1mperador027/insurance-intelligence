@@ -1,8 +1,4 @@
 -- INSURANCE INTELLIGENCE | MEDIDAS DAX INICIAIS
--- Relacionamentos: DimMes[AnoMes] 1:* tabelas fato e Metas;
--- DimProduto[ProdutoID], DimEquipe[EquipeID] e DimUnidade[UnidadeID]
--- relacionam-se às tabelas fato correspondentes.
-
 Propostas = COUNTROWS(FatoPropostas)
 Apolices Emitidas = COUNTROWS(FatoApolices)
 Premio Emitido = SUM(FatoApolices[PremioEmitido])
