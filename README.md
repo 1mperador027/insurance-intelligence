@@ -14,12 +14,14 @@ Demonstrar, em um cenário simulado, como dados estruturados e ferramentas anal�
 
 A publicação pelo GitHub Pages depende da ativação da fonte **GitHub Actions** em Settings → Pages. Os valores exibidos na página web resumida são exemplos sintéticos e não substituem a base analítica completa.
 
-## Conteúdo do projeto
-- **Dashboard interativo:** filtros por período, produto, equipe e unidade; indicadores, gráficos e tabela gerencial.
-- **Base analítica:** planilha com tabelas simuladas.
-- **Dados CSV:** dimensões e fatos para estudo e importação no Power BI.
-- **Medidas DAX:** exemplos iniciais para análise.
-- **Documentação:** arquitetura, definições, premissas e instruções de uso.
+## Conteúdo disponível neste repositório
+- **Dashboard web resumido:** página demonstrativa com KPIs e gráficos ilustrativos em `dashboard/index.html`.
+- **Medidas DAX iniciais:** exemplos em `power-bi/Medidas_DAX_PowerBI.txt`.
+- **Documentação:** arquitetura, definições, limitações e instruções para publicação.
+- **Texto para LinkedIn:** em `docs/TEXTO_LINKEDIN.md`.
+
+## Materiais ainda não incluídos nesta versão
+A planilha Excel original, o PDF de portfólio, o conjunto completo de CSVs e a versão detalhada do dashboard local ainda não foram adicionados ao repositório. A página web atual é uma demonstração resumida e ilustrativa.
 
 ## Tecnologias e conceitos explorados
 - Excel e CSV para estruturação dos dados;
@@ -42,10 +44,9 @@ A publicação pelo GitHub Pages depende da ativação da fonte **GitHub Actions
 Esta versão é um protótipo independente. Não inclui arquivo Power BI (.pbix), publicação operacional, autenticação, backend, integração com sistemas externos ou IA generativa. Os indicadores devem ser interpretados apenas dentro do cenário sintético.
 
 ## Como começar
-1. Consulte a pasta `data/` para conhecer os dados fictícios.
-2. Leia `docs/ARQUITETURA_E_MODELO.md` e `docs/DEFINICOES_E_LIMITACOES.md`.
-3. Abra o dashboard HTML em um navegador quando o arquivo estiver publicado em `dashboard/`.
-4. Use os CSVs como material de estudo para modelagem e exercícios no Power BI.
+1. Abra o [dashboard demonstrativo](https://1mperador027.github.io/insurance-intelligence/) após ativar o GitHub Pages.
+2. Leia `docs/ARQUITETURA_E_MODELO.md`, `docs/DEFINICOES_E_LIMITACOES.md` e `docs/ATIVAR_GITHUB_PAGES.md`.
+3. Consulte `power-bi/Medidas_DAX_PowerBI.txt` como material inicial para estudo.
 
 ## Uso responsável
 O material é disponibilizado para fins educacionais. Antes de adaptar o projeto para qualquer contexto real, é necessário avaliar qualidade dos dados, privacidade, segurança, governança, autorização e adequação regulatória.
