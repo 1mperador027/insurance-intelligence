@@ -10,7 +10,7 @@ A conversão demonstrativa considera propostas criadas no período selecionado e
 Os textos de insight são gerados por regras determinísticas. Não há modelo generativo, treinamento, inferência por IA externa ou integração com serviços de IA.
 
 ## Limitações
-- Sem arquivo .pbix nesta entrega.
+- Sem arquivo .pbix nesta entrega; o Excel analítico e o relatório PDF são gerados automaticamente no deploy.
 - Sem conexão com sistemas ou APIs externas.
 - Sem autenticação ou backend.
 - A publicação web é estática e realizada pelo GitHub Pages via GitHub Actions.

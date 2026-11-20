@@ -3,6 +3,11 @@
 ## Dashboard web
 Abra a [demonstração publicada](https://1mperador027.github.io/insurance-intelligence/). Ela apresenta KPIs e gráficos sintéticos estáticos. Não há filtros operacionais nesta versão web.
 
+## Arquivos para download
+- [Planilha analítica Excel](../data/Insurance_Intelligence_Base_Analitica.xlsx).
+- [Relatório de portfólio PDF](Projeto_Insurance_Intelligence_Portfolio.pdf).
+- [Base CSV para Power BI](../data/insurance_intelligence_csv.zip).
+
 ## Power BI Desktop
 1. Baixe o [pacote CSV](https://1mperador027.github.io/insurance-intelligence/data/insurance_intelligence_csv.zip).
 2. Extraia o ZIP no computador.

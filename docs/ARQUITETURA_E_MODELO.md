@@ -22,6 +22,9 @@ Geração de dados sintéticos → validação → preparação e modelagem → 
 Configure relacionamentos 1:* com filtro em uma direção, da dimensão para a tabela fato. Verifique tipos de dados e cardinalidade após importar.
 
 ## Materiais e limites
+- [Planilha analítica Excel](../data/Insurance_Intelligence_Base_Analitica.xlsx), com visão executiva e tabelas completas.
+- [Relatório de portfólio PDF](Projeto_Insurance_Intelligence_Portfolio.pdf).
+
 - [Baixar pacote CSV](https://1mperador027.github.io/insurance-intelligence/data/insurance_intelligence_csv.zip).
 - [Medidas DAX iniciais](../power-bi/Medidas_DAX_PowerBI.txt).
 - Não há arquivo Excel (.xlsx) nem Power BI (.pbix) incluído no repositório nesta versão; o PBIX deve ser montado e salvo localmente no Power BI Desktop.
