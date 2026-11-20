@@ -1,23 +1,24 @@
 # Base de dados — Insurance Intelligence
 
-Este diretório contém a base analítica demonstrativa do projeto, construída exclusivamente com dados fictícios/sintéticos.
+**[Baixar pacote CSV para Power BI](insurance_intelligence_csv.zip)**
 
-## Arquivo
-- [Baixar pacote CSV Power BI](insurance_intelligence_csv.zip): dicionário de dados e tabelas CSV para modelagem no Power BI.
+Base demonstrativa com dados inteiramente fictícios/sintéticos.
 
-## Conteúdo do pacote
-- FatoPropostas
-- FatoApolices
-- FatoRenovacoes
-- DimCalendario
-- DimProduto
-- DimEquipe
-- DimUnidade
-- DimMes
-- Metas
-- Dicionario_de_Dados
+## Conteúdo
+- `FatoPropostas`: 1.500 propostas.
+- `FatoApolices`: 779 apólices.
+- `FatoRenovacoes`: 420 eventos.
+- Dimensões de calendário, mês, produto, equipe e unidade.
+- Metas mensais por produto.
+- Dicionário de dados.
 
-## Uso
-Extraia o ZIP e importe os CSVs no Power BI. Configure os relacionamentos conforme a documentação em `../docs/ARQUITETURA_E_MODELO.md` e utilize as medidas DAX em `../power-bi/Medidas_DAX_PowerBI.txt`.
+## Integridade verificada
+- Identificadores de propostas, apólices e renovações sem duplicidade.
+- Todas as apólices referenciam uma proposta existente.
+- Todas as renovações referenciam uma apólice existente.
+- As 779 propostas com status `Emitida` correspondem às 779 apólices da base.
 
-**Aviso:** todos os registros são fictícios e servem apenas para demonstração educacional. Não representam clientes, operações, resultados ou dados de qualquer instituição financeira ou seguradora.
+## Importação
+Extraia o ZIP e importe os arquivos CSV no Power BI Desktop. Configure os relacionamentos conforme [a arquitetura do modelo](../docs/ARQUITETURA_E_MODELO.md) e utilize as [medidas DAX](../power-bi/Medidas_DAX_PowerBI.txt).
+
+**Aviso:** os registros não representam clientes, operações, resultados ou dados de qualquer instituição financeira ou seguradora.
