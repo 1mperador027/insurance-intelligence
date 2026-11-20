@@ -1,74 +1,132 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Insurance Intelligence | Dashboard</title>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1728">
+<meta name="description" content="Insurance Intelligence — painel executivo demonstrativo com dados sintéticos.">
+<title>Insurance Intelligence | Executive Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <style>
-:root{--navy:#10243b;--teal:#159b91;--blue:#4b83c3;--bg:#f3f6fa;--ink:#172b42;--muted:#66788a}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}header{background:linear-gradient(120deg,#10243b,#1b4564);color:white;padding:28px max(20px,calc((100% - 1120px)/2))}header small{letter-spacing:2px;color:#a9c5d8;font-weight:700}h1{margin:4px 0;font-size:28px}.sub{color:#d2e0ea}main{max-width:1120px;margin:24px auto;padding:0 18px}.notice{background:#fff7e8;border:1px solid #f1d5a5;padding:14px 16px;border-radius:12px;margin-bottom:18px}.filters,.kpis,.charts{display:grid;gap:14px}.filters{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));background:white;padding:16px;border-radius:14px;margin-bottom:16px}.filters label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}.filters select{width:100%;padding:10px;border:1px solid #dbe3eb;border-radius:8px;background:white}.kpis{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:16px}.card,.chart{background:white;border:1px solid #e4eaf0;border-radius:14px;padding:17px;box-shadow:0 6px 20px #10243b0c}.kpi-label{font-size:12px;color:var(--muted)}.kpi{font-size:27px;font-weight:750;margin-top:6px}.charts{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.chart h2{font-size:16px;margin:0 0 12px}.chart canvas{max-height:270px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}.actions a{display:inline-block;background:white;color:#10243b;text-decoration:none;font-weight:700;padding:11px 14px;border:1px solid #dbe3eb;border-radius:9px}.actions a.primary{background:var(--teal);color:white;border-color:var(--teal)}.foot{color:var(--muted);font-size:12px;margin:22px 2px 36px}.status{font-size:12px;color:var(--muted);margin:0 0 12px}.insight{background:#eaf3f5;border-left:4px solid var(--teal);padding:13px 15px;border-radius:8px;margin:16px 0}
-</style></head><body>
-<header><small>PROJETO INDEPENDENTE • PORTFÓLIO EDUCACIONAL</small><h1>Insurance Intelligence</h1><div class="sub">Inteligência Comercial e Gestão Estratégica de Seguros</div></header>
-<main>
-<div class="notice"><b>Transparência:</b> projeto independente e educacional, com dados inteiramente fictícios. Sem vínculo, patrocínio ou integração com o Itaú ou qualquer instituição financeira.</div>
-<div class="actions">
-<a class="primary" href="../data/insurance_intelligence_csv.zip" download>Baixar base CSV para Power BI</a>
-<a href="../data/Insurance_Intelligence_Base_Analitica.xlsx" download>Baixar planilha Excel</a>
-<a href="../docs/Projeto_Insurance_Intelligence_Portfolio.pdf">Baixar portfólio PDF</a>
-<a href="../power-bi/Medidas_DAX_PowerBI.txt">Medidas DAX</a>
-<a href="../docs/ARQUITETURA_E_MODELO.md">Arquitetura</a>
-</div>
-<div class="status" id="loadStatus">Carregando base demonstrativa...</div>
-<section class="filters">
-<div><label for="period">Competência</label><select id="period"><option value="all">Todo o período</option></select></div>
-<div><label for="product">Produto</label><select id="product"><option value="all">Todos os produtos</option></select></div>
-<div><label for="team">Equipe</label><select id="team"><option value="all">Todas as equipes</option></select></div>
-<div><label for="unit">Unidade</label><select id="unit"><option value="all">Todas as unidades</option></select></div>
-</section>
-<section class="kpis">
-<div class="card"><div class="kpi-label">Prêmio emitido</div><div class="kpi" id="kpiPremium">—</div></div>
-<div class="card"><div class="kpi-label">Apólices emitidas</div><div class="kpi" id="kpiPolicies">—</div></div>
-<div class="card"><div class="kpi-label">Propostas registradas</div><div class="kpi" id="kpiProposals">—</div></div>
-<div class="card"><div class="kpi-label">Conversão por coorte</div><div class="kpi" id="kpiConversion">—</div></div>
-</section>
-<div class="insight" id="insight">A leitura gerencial será calculada a partir dos dados filtrados.</div>
-<section class="charts">
-<div class="chart"><h2>Prêmio emitido por mês</h2><canvas id="monthly"></canvas></div>
-<div class="chart"><h2>Prêmio por produto</h2><canvas id="products"></canvas></div>
-<div class="chart"><h2>Status das propostas</h2><canvas id="funnel"></canvas></div>
-<div class="chart"><h2>Status das renovações</h2><canvas id="renewals"></canvas></div>
-</section>
-<div class="foot">Indicadores calculados a partir de uma base sintética reproduzível. Conversão considera o status das propostas filtradas. Os insights são regras determinísticas, não IA generativa. Para análise no Power BI, utilize os arquivos CSV e as medidas DAX.</div>
-</main>
+:root{--bg:#f4f6fa;--surface:#fff;--ink:#18263b;--muted:#7a8798;--line:#e8edf3;--navy:#0b1728;--navy2:#12243a;--teal:#12a594;--cyan:#4ab8c3;--blue:#547ee8;--amber:#e5a34b;--red:#d97878;--shadow:0 12px 35px rgba(22,39,64,.055);--radius:17px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,select{font:inherit}.shell{min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:238px;background:var(--navy);color:#fff;padding:26px 18px;display:flex;flex-direction:column;z-index:5}.brand{display:flex;align-items:center;gap:11px;padding:2px 8px 32px}.brand-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(145deg,#1bc5ad,#447ee8);display:grid;place-items:center;font-weight:900;font-size:17px;box-shadow:0 8px 20px #0cae9b38}.brand-name{font-weight:750;font-size:14px;letter-spacing:.2px}.brand-sub{font-size:10px;color:#8496ad;letter-spacing:1.5px}.nav-label{font-size:9px;color:#657991;letter-spacing:1.8px;font-weight:800;padding:0 10px 10px}.nav-item{display:flex;align-items:center;gap:12px;padding:11px 12px;margin:2px 0;color:#a9b8ca;border-radius:10px;font-size:12px}.nav-item.active{background:#ffffff12;color:#fff}.nav-icon{width:18px;text-align:center;font-size:15px}.sidebar-bottom{margin-top:auto;border-top:1px solid #ffffff15;padding:18px 9px 0;color:#91a2b6;font-size:10px;line-height:1.6}.main{margin-left:238px;min-height:100vh}.topbar{height:68px;background:#ffffffd9;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;position:sticky;top:0;z-index:4}.crumb{font-size:11px;color:var(--muted)}.crumb b{color:var(--ink);font-weight:700}.top-right{display:flex;align-items:center;gap:12px}.live{display:flex;align-items:center;gap:7px;font-size:10px;color:#748397}.dot{width:7px;height:7px;border-radius:50%;background:#21b58f;box-shadow:0 0 0 4px #21b58f1b}.avatar{width:30px;height:30px;border-radius:50%;background:#e8eef8;color:#42618d;display:grid;place-items:center;font-size:10px;font-weight:800}
+.content{max-width:1440px;margin:0 auto;padding:29px 34px 40px}.heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:23px}.eyebrow{font-size:9px;letter-spacing:2px;color:var(--teal);font-weight:850;text-transform:uppercase}.heading h1{font-size:25px;letter-spacing:-.8px;margin:5px 0 2px;font-weight:780}.heading p{margin:0;color:var(--muted);font-size:12px}.date-chip{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:10px;color:#64758a;white-space:nowrap}
+.disclaimer{display:flex;gap:11px;align-items:flex-start;background:#fffaf0;border:1px solid #f4e5c6;border-radius:12px;padding:12px 15px;margin-bottom:18px;color:#7c6843;font-size:10px}.disclaimer strong{color:#6d542a}.disclaimer .i{font-size:15px}
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:15px 17px;margin-bottom:17px}.filter-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.filter-title{font-size:11px;font-weight:800;display:flex;align-items:center;gap:8px}.filter-title span{font-size:15px;color:var(--teal)}.filter-hint{font-size:9px;color:var(--muted)}.filter-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:10px}.field label{display:block;color:#8190a2;font-size:9px;font-weight:750;margin:0 0 5px 2px;letter-spacing:.4px}.field select{width:100%;height:38px;border:1px solid #e5eaf0;border-radius:9px;background:#fbfcfe;color:#304158;padding:0 10px;font-size:10px;outline:none}.field select:focus{border-color:#73c9bf;box-shadow:0 0 0 3px #12a59417}.reset{align-self:end;height:38px;border:1px solid #dce7e9;background:#f6fbfa;color:#168c80;border-radius:9px;padding:0 13px;font-size:10px;font-weight:750;cursor:pointer;white-space:nowrap}.reset:hover{background:#eaf7f5}
+.filter-state{font-size:9px;color:#91a0b0;margin:9px 2px 0;min-height:13px}
+.section-row{display:flex;align-items:center;justify-content:space-between;margin:23px 2px 11px}.section-title{font-size:12px;font-weight:800;letter-spacing:.1px}.section-note{font-size:9px;color:#8a98a9}
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.kpi{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:16px 16px 14px;box-shadow:var(--shadow);min-height:113px}.kpi:after{content:"";position:absolute;width:76px;height:76px;border-radius:50%;right:-27px;top:-27px;background:var(--tint)}.kpi-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}.kpi-label{font-size:9px;color:#8491a2;font-weight:750}.kpi-icon{width:27px;height:27px;border-radius:9px;background:var(--tint);color:var(--accent);display:grid;place-items:center;font-size:13px}.kpi-value{font-size:23px;font-weight:800;letter-spacing:-.7px;margin-top:8px;position:relative;z-index:1}.kpi-foot{font-size:8px;color:#9aa6b4;margin-top:2px;position:relative;z-index:1}
+.insight{display:flex;align-items:flex-start;gap:12px;background:linear-gradient(105deg,#eaf8f6,#f2f7ff);border:1px solid #dcefeb;border-radius:14px;padding:14px 16px;margin-top:16px}.insight-icon{width:29px;height:29px;flex:none;border-radius:9px;background:#fff;color:var(--teal);display:grid;place-items:center;font-size:14px}.insight strong{display:block;font-size:10px;margin-bottom:2px}.insight p{margin:0;color:#64778a;font-size:10px}
+.chart-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:13px}.chart-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:17px 18px;box-shadow:var(--shadow);min-width:0}.chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.chart-head h3{font-size:11px;margin:0;font-weight:800}.chart-head p{font-size:9px;color:#91a0b0;margin:3px 0 0}.chart-tag{font-size:8px;color:#6e879b;background:#f2f6fa;border-radius:6px;padding:4px 7px;white-space:nowrap}.canvas-wrap{height:218px;position:relative}.lower-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin-top:13px}.lower-grid .canvas-wrap{height:190px}
+.footer{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:26px;padding-top:15px;color:#9aa6b4;font-size:9px}.footer b{color:#65758a}
+.status{font-size:9px;color:#8b9aab;margin:0 0 10px}.error{color:#b54b4b}
+a{color:inherit;text-decoration:none}
+@media(max-width:1150px){.sidebar{width:205px}.main{margin-left:205px}.content{padding:25px 22px}.topbar{padding:0 22px}.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr)) auto}.chart-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:760px){.sidebar{position:static;width:auto;height:auto;padding:12px 15px;display:block}.brand{padding:0}.brand-mark{width:32px;height:32px}.brand-sub,.nav-label,.nav-item,.sidebar-bottom{display:none}.main{margin:0}.topbar{height:48px;padding:0 16px}.content{padding:20px 14px 28px}.heading{align-items:flex-start;flex-direction:column;margin-bottom:17px}.heading h1{font-size:22px}.date-chip{display:none}.filter-grid{grid-template-columns:1fr 1fr}.reset{grid-column:span 2;width:100%}.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{min-height:104px;padding:13px}.kpi-value{font-size:20px}.kpi:last-child{grid-column:span 2}.chart-grid,.lower-grid{grid-template-columns:1fr}.chart-card{padding:15px}.canvas-wrap{height:205px}.lower-grid .canvas-wrap{height:185px}.section-row{margin-top:20px}.footer{flex-direction:column}.live{display:none}}
+</style></head>
+<body><div class="shell">
+<aside class="sidebar">
+ <div class="brand"><div class="brand-mark">II</div><div><div class="brand-name">Insurance Intelligence</div><div class="brand-sub">BUSINESS ANALYTICS</div></div></div>
+ <div class="nav-label">WORKSPACE</div>
+ <div class="nav-item active"><span class="nav-icon">▦</span> Visão executiva</div>
+ <div class="nav-item"><span class="nav-icon">◷</span> Produção comercial</div>
+ <div class="nav-item"><span class="nav-icon">↻</span> Gestão de renovações</div>
+ <div class="sidebar-bottom">AMBIENTE DEMONSTRATIVO<br><b style="color:#d0dbe8">Dados 100% sintéticos</b><br>Projeto independente • 2025</div>
+</aside>
+<div class="main">
+ <div class="topbar"><div class="crumb">Workspace&nbsp; / &nbsp;<b>Visão executiva</b></div><div class="top-right"><div class="live"><span class="dot"></span> Base sintética carregada</div><div class="avatar">II</div></div></div>
+ <main class="content">
+  <div class="heading"><div><div class="eyebrow">Executive overview</div><h1>Painel de inteligência comercial</h1><p>Visão consolidada de produção, conversão e relacionamento da carteira.</p></div><div class="date-chip">▦ &nbsp; Exercício de referência: 2025</div></div>
+  <div class="disclaimer"><span class="i">ⓘ</span><div><strong>Ambiente independente e educacional.</strong> Todos os dados, equipes, unidades, produtos e resultados são fictícios. Este projeto não possui vínculo, patrocínio, endosso ou integração com o Itaú ou qualquer outra instituição financeira.</div></div>
+  <div class="status" id="loadStatus">Carregando dados e preparando indicadores...</div>
+  <section class="filters">
+   <div class="filter-head"><div class="filter-title"><span>☷</span> Filtros de análise</div><div class="filter-hint">Selecione uma ou mais dimensões para atualizar o painel</div></div>
+   <div class="filter-grid">
+    <div class="field"><label for="period">COMPETÊNCIA</label><select id="period"><option value="all">Todo o período</option></select></div>
+    <div class="field"><label for="product">PRODUTO</label><select id="product"><option value="all">Todos os produtos</option></select></div>
+    <div class="field"><label for="team">EQUIPE</label><select id="team"><option value="all">Todas as equipes</option></select></div>
+    <div class="field"><label for="unit">UNIDADE</label><select id="unit"><option value="all">Todas as unidades</option></select></div>
+    <button class="reset" id="resetFilters" type="button">↺ &nbsp; Limpar filtros</button>
+   </div><div class="filter-state" id="filterState">Exibindo toda a base • 2025</div>
+  </section>
+  <div class="section-row"><div class="section-title">Indicadores-chave de desempenho</div><div class="section-note">Atualizados conforme os filtros selecionados</div></div>
+  <section class="kpis">
+   <div class="kpi" style="--tint:#e5f7f4;--accent:#159b8c"><div class="kpi-top"><div class="kpi-label">PRÊMIO EMITIDO</div><div class="kpi-icon">R$</div></div><div class="kpi-value" id="kpiPremium">—</div><div class="kpi-foot">Volume de prêmio das apólices no recorte</div></div>
+   <div class="kpi" style="--tint:#edf2ff;--accent:#547ee8"><div class="kpi-top"><div class="kpi-label">APÓLICES EMITIDAS</div><div class="kpi-icon">▤</div></div><div class="kpi-value" id="kpiPolicies">—</div><div class="kpi-foot">Contratos simulados emitidos</div></div>
+   <div class="kpi" style="--tint:#fff4e7;--accent:#d99438"><div class="kpi-top"><div class="kpi-label">PROPOSTAS</div><div class="kpi-icon">⌁</div></div><div class="kpi-value" id="kpiProposals">—</div><div class="kpi-foot">Oportunidades registradas</div></div>
+   <div class="kpi" style="--tint:#f2edff;--accent:#8867c7"><div class="kpi-top"><div class="kpi-label">TAXA DE CONVERSÃO</div><div class="kpi-icon">↗</div></div><div class="kpi-value" id="kpiConversion">—</div><div class="kpi-foot">Propostas emitidas ÷ propostas registradas</div></div>
+   <div class="kpi" style="--tint:#eaf5ff;--accent:#4387bd"><div class="kpi-top"><div class="kpi-label">TAXA DE RENOVAÇÃO</div><div class="kpi-icon">↻</div></div><div class="kpi-value" id="kpiRenewal">—</div><div class="kpi-foot" id="renewalFoot">Renovadas ÷ eventos de renovação</div></div>
+  </section>
+  <div class="insight"><div class="insight-icon">✧</div><div><strong>Leitura gerencial do recorte</strong><p id="insight">Os principais destaques serão calculados após o carregamento da base.</p></div></div>
+  <div class="section-row"><div class="section-title">Desempenho comercial</div><div class="section-note">Valores e quantidades simulados</div></div>
+  <section class="chart-grid">
+   <div class="chart-card"><div class="chart-head"><div><h3>Evolução do prêmio emitido</h3><p>Distribuição mensal do prêmio por emissão</p></div><span class="chart-tag">R$ • MENSAL</span></div><div class="canvas-wrap"><canvas id="monthly"></canvas></div></div>
+   <div class="chart-card"><div class="chart-head"><div><h3>Composição por produto</h3><p>Participação no prêmio emitido</p></div><span class="chart-tag">MIX</span></div><div class="canvas-wrap"><canvas id="products"></canvas></div></div>
+  </section>
+  <section class="lower-grid">
+   <div class="chart-card"><div class="chart-head"><div><h3>Funil de propostas</h3><p>Distribuição por situação</p></div></div><div class="canvas-wrap"><canvas id="funnel"></canvas></div></div>
+   <div class="chart-card"><div class="chart-head"><div><h3>Resultado das renovações</h3><p>Eventos no período selecionado</p></div></div><div class="canvas-wrap"><canvas id="renewals"></canvas></div></div>
+   <div class="chart-card"><div class="chart-head"><div><h3>Prêmio por equipe</h3><p>Comparativo de produção</p></div></div><div class="canvas-wrap"><canvas id="teams"></canvas></div></div>
+  </section>
+  <div class="footer"><div><b>INSURANCE INTELLIGENCE</b> · Projeto independente de aprendizagem em BI</div><div>Regras determinísticas · Sem IA generativa · Sem integração externa</div></div>
+ </main>
+</div></div>
 <script>
 (async()=>{
 const el=id=>document.getElementById(id);
 const money=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
-const number=v=>new Intl.NumberFormat('pt-BR').format(v);
+const num=v=>new Intl.NumberFormat('pt-BR').format(v);
+const pct=v=>(v*100).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%';
 try{
  const response=await fetch('../data/dashboard_data.json');
- if(!response.ok) throw new Error('Não foi possível carregar a base.');
+ if(!response.ok) throw new Error('Não foi possível carregar a base sintética.');
  const db=await response.json();
- const monthNames=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+ const months=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
  const fill=(id,items)=>items.forEach(x=>{const o=document.createElement('option');o.value=x.id;o.textContent=x.name;el(id).appendChild(o)});
  [...new Set(db.proposals.map(x=>x.date.slice(0,7)))].sort().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;el('period').appendChild(o)});
  fill('product',db.products);fill('team',db.teams);fill('unit',db.units);
- const palette=['#159b91','#4b83c3','#ed9b45','#8067a8','#9aa9b8'];
+ const palette=['#12a594','#547ee8','#e5a34b','#9272c8','#54a5bc'];
  const charts={};
- const draw=(id,type,labels,values)=>{if(charts[id]){charts[id].data.labels=labels;charts[id].data.datasets[0].data=values;charts[id].update();return}
- charts[id]=new Chart(el(id),{type,data:{labels,datasets:[{data:values,backgroundColor:type==='line'?'#159b91':palette,borderColor:type==='line'?'#159b91':undefined,borderWidth:1}]},options:{responsive:true,plugins:{legend:{display:type==='doughnut'}},scales:(type==='bar'||type==='line')?{y:{beginAtZero:true}}:{}}})};
+ const baseOptions={responsive:true,maintainAspectRatio:false,animation:{duration:350},plugins:{legend:{labels:{usePointStyle:true,boxWidth:7,boxHeight:7,color:'#748397',font:{size:9},padding:14}},tooltip:{backgroundColor:'#10243b',padding:10,titleFont:{size:10},bodyFont:{size:10},displayColors:true}},layout:{padding:2}};
+ const make=(id,type,labels,values,extra={})=>{
+  if(charts[id]){charts[id].data.labels=labels;charts[id].data.datasets[0].data=values;charts[id].update();return}
+  const isPie=type==='doughnut';
+  const opts={...baseOptions,...(isPie?{}:{scales:{x:{grid:{display:false},ticks:{color:'#8492a3',font:{size:9}},border:{display:false}},y:{beginAtZero:true,grid:{color:'#edf1f5'},ticks:{color:'#8492a3',font:{size:9}},border:{display:false}}}}),...extra.options};
+  charts[id]=new Chart(el(id),{type,data:{labels,datasets:[{data:values,backgroundColor:isPie?palette:(type==='line'?'rgba(18,165,148,.12)':'#12a594'),borderColor:isPie?undefined:(type==='line'?'#12a594':'#12a594'),borderWidth:isPie?0:1,borderRadius:type==='bar'?6:0,fill:type==='line',tension:.35,pointRadius:type==='line'?3:0,pointBackgroundColor:'#12a594'}]},options:opts});
+ };
+ const match=x=>{
+  const p=el('period').value,prod=el('product').value,t=el('team').value,u=el('unit').value;
+  return (p==='all'||x.date.slice(0,7)===p)&&(prod==='all'||x.product===prod)&&(t==='all'||x.team===t)&&(u==='all'||x.unit===u);
+ };
  function update(){
-  const period=el('period').value,product=el('product').value,team=el('team').value,unit=el('unit').value;
-  const match=x=>(period==='all'||x.date.slice(0,7)===period)&&(product==='all'||x.product===product)&&(team==='all'||x.team===team)&&(unit==='all'||x.unit===unit);
+  const p=el('period').value,prod=el('product').value,t=el('team').value,u=el('unit').value;
   const props=db.proposals.filter(match),pol=db.policies.filter(match),ren=db.renewals.filter(match);
-  const emitted=props.filter(x=>x.status==='Emitida').length,premium=pol.reduce((a,x)=>a+x.premium,0),conv=props.length?emitted/props.length:0;
-  el('kpiPremium').textContent=money(premium);el('kpiPolicies').textContent=number(pol.length);el('kpiProposals').textContent=number(props.length);el('kpiConversion').textContent=(conv*100).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%';
+  const issued=props.filter(x=>x.status==='Emitida').length;
+  const premium=pol.reduce((a,x)=>a+x.premium,0);
+  const conversion=props.length?issued/props.length:0;
   const renewed=ren.filter(x=>x.status==='Renovada').length;
-  el('insight').textContent=props.length?'Leitura gerencial: '+number(props.length)+' propostas no recorte, conversão de '+(conv*100).toFixed(1).replace('.',',')+'% e '+number(renewed)+' renovações concluídas em '+number(ren.length)+' eventos analisados.':'Nenhum registro encontrado para os filtros selecionados.';
-  const monthly=Array.from({length:12},(_,i)=>pol.filter(x=>Number(x.date.slice(5,7))===i+1).reduce((a,x)=>a+x.premium,0));
-  const pnames=db.products.map(x=>x.name),byProd=db.products.map(x=>pol.filter(p=>p.product===x.id).reduce((a,p)=>a+p.premium,0));
-  const sLabels=['Emitida','Em análise','Não convertida'],sValues=sLabels.map(s=>props.filter(p=>p.status===s).length);
-  const rLabels=['Renovada','Pendente','Cancelada'],rValues=rLabels.map(s=>ren.filter(x=>x.status===s).length);
-  draw('monthly','bar',monthNames,monthly);draw('products','doughnut',pnames,byProd);draw('funnel','bar',sLabels,sValues);draw('renewals','doughnut',rLabels,rValues);
+  const renewalRate=ren.length?renewed/ren.length:0;
+  el('kpiPremium').textContent=money(premium);el('kpiPolicies').textContent=num(pol.length);el('kpiProposals').textContent=num(props.length);el('kpiConversion').textContent=pct(conversion);el('kpiRenewal').textContent=pct(renewalRate);
+  el('renewalFoot').textContent=num(renewed)+' renovadas de '+num(ren.length)+' eventos';
+  const active=[p!=='all'?'Competência: '+p:null,prod!=='all'?'Produto: '+db.products.find(x=>x.id===prod).name:null,t!=='all'?'Equipe: '+db.teams.find(x=>x.id===t).name:null,u!=='all'?'Unidade: '+db.units.find(x=>x.id===u).name:null].filter(Boolean);
+  el('filterState').textContent=active.length?'Filtros ativos: '+active.join(' · '):'Exibindo toda a base • exercício 2025';
+  el('insight').textContent=props.length?'No recorte atual, '+num(props.length)+' propostas foram registradas, com conversão de '+pct(conversion)+'. O prêmio emitido soma '+money(premium)+'. Nas renovações, '+num(renewed)+' de '+num(ren.length)+' eventos foram concluídos como renovados.':'Não há registros para a combinação de filtros selecionada. Limpe ou ajuste os filtros para visualizar os indicadores.';
+  const monthly=months.map((m,i)=>pol.filter(x=>Number(x.date.slice(5,7))===i+1).reduce((a,x)=>a+x.premium,0));
+  const pLabels=db.products.map(x=>x.name),pValues=db.products.map(x=>pol.filter(y=>y.product===x.id).reduce((a,x)=>a+x.premium,0));
+  const statusLabels=['Emitida','Em análise','Não convertida'],statusValues=statusLabels.map(s=>props.filter(x=>x.status===s).length);
+  const renLabels=['Renovada','Pendente','Cancelada'],renValues=renLabels.map(s=>ren.filter(x=>x.status===s).length);
+  const teamLabels=db.teams.map(x=>x.name),teamValues=db.teams.map(x=>pol.filter(y=>y.team===x.id).reduce((a,x)=>a+x.premium,0));
+  make('monthly','bar',months,monthly,{options:{plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{color:'#8492a3',font:{size:9}},border:{display:false}},y:{beginAtZero:true,grid:{color:'#edf1f5'},ticks:{color:'#8492a3',font:{size:9},callback:v=>'R$ '+num(v)},border:{display:false}}}}});
+  make('products','doughnut',pLabels,pValues,{options:{cutout:'68%',plugins:{legend:{position:'bottom'}}}});
+  make('funnel','bar',statusLabels,statusValues,{options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#edf1f5'},ticks:{color:'#8492a3',font:{size:9}},border:{display:false}},y:{grid:{display:false},ticks:{color:'#8492a3',font:{size:9}},border:{display:false}}}}});
+  make('renewals','doughnut',renLabels,renValues,{options:{cutout:'66%',plugins:{legend:{position:'bottom'}}}});
+  make('teams','bar',teamLabels,teamValues,{options:{indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'#edf1f5'},ticks:{color:'#8492a3',font:{size:9},callback:v=>'R$ '+num(v)},border:{display:false}},y:{grid:{display:false},ticks:{color:'#8492a3',font:{size:9}},border:{display:false}}}}});
  }
  ['period','product','team','unit'].forEach(id=>el(id).addEventListener('change',update));
- update();el('loadStatus').textContent='Base carregada • filtros funcionais • valores sintéticos';
-}catch(e){el('loadStatus').textContent='Falha ao carregar a base: '+e.message;el('insight').textContent='Atualize a página ou consulte os arquivos CSV no repositório.';console.error(e)}
+ el('resetFilters').addEventListener('click',()=>{['period','product','team','unit'].forEach(id=>el(id).value='all');update()});
+ update();
+ el('loadStatus').textContent='Dados carregados e validados · '+num(db.proposals.length)+' propostas · '+num(db.policies.length)+' apólices · '+num(db.renewals.length)+' eventos de renovação';
+}catch(e){el('loadStatus').textContent='Não foi possível carregar os dados: '+e.message;el('loadStatus').classList.add('error');el('insight').textContent='Verifique a conexão e recarregue a página. Os arquivos CSV também estão disponíveis para download.';console.error(e)}
 })();
-</script></body></html>
+</script>
+</body></html>
