@@ -6,7 +6,7 @@
 O projeto simula uma operação de seguros com dados inteiramente fictícios para explorar indicadores comerciais, desempenho de equipes, conversão de propostas, gestão de apólices e renovações.
 
 ## Demonstração e materiais
-- **[Abrir dashboard](https://1mperador027.github.io/insurance-intelligence/)**.
+- **[Abrir dashboard interativo](https://1mperador027.github.io/insurance-intelligence/)** — filtros por competência, produto, equipe e unidade.
 - **[Baixar base CSV para Power BI](https://1mperador027.github.io/insurance-intelligence/data/insurance_intelligence_csv.zip)** — pacote gerado e validado automaticamente durante a publicação.
 - **[Baixar planilha analítica Excel](https://1mperador027.github.io/insurance-intelligence/data/Insurance_Intelligence_Base_Analitica.xlsx)** — visão executiva e tabelas estruturadas.
 - **[Baixar relatório de portfólio PDF](https://1mperador027.github.io/insurance-intelligence/docs/Projeto_Insurance_Intelligence_Portfolio.pdf)**.
@@ -25,7 +25,7 @@ CSV, Excel, Power BI (estrutura preparada), DAX, modelagem dimensional, HTML, Ja
 - Sem dados reais de clientes, colaboradores, instituições ou operações.
 - Sem vínculo institucional, patrocínio, endosso ou integração com o Itaú ou qualquer outra instituição financeira.
 - Sem conexão com sistemas corporativos, APIs privadas ou bases externas.
-- A leitura inteligente usa regras fixas; não há IA generativa integrada.
+- O dashboard possui filtros funcionais alimentados pela base sintética. A leitura inteligente usa regras fixas; não há IA generativa integrada.
 - Esta versão ainda não inclui arquivo Power BI (.pbix), backend, autenticação ou integração operacional.
 
 **Insurance Intelligence — projeto independente de aprendizagem.**

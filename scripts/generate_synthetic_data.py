@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Gera pacote CSV sintético e reproduzível para o Insurance Intelligence."""
-import calendar, csv, io, random, zipfile
+import calendar, csv, io, json, random, zipfile
 from datetime import date, timedelta
 from pathlib import Path
 R=random.Random(20251119); Y=2025; root=Path(__file__).resolve().parents[1]
@@ -56,7 +56,18 @@ with zipfile.ZipFile(out,"w",zipfile.ZIP_DEFLATED,compresslevel=9) as z:
 with zipfile.ZipFile(out) as z: assert len(z.namelist())==10 and z.testzip() is None
 print(f"OK: {out.stat().st_size} bytes; propostas=1500; apólices=779; renovações=420; integridade=OK")
 
-# Workbook Excel analítico: tabelas completas, indicadores e orientações.
+
+# JSON usado pelos filtros e gráficos interativos do dashboard.
+dashboard_data={
+ "proposals":[{"date":x[1],"product":x[2],"team":x[3],"unit":x[4],"premium":float(x[5]),"status":x[6]} for x in props],
+ "policies":[{"date":x[2],"product":x[3],"team":x[4],"unit":x[5],"premium":float(x[6])} for x in policies],
+ "renewals":[{"date":x[2],"product":x[3],"team":x[4],"unit":x[5],"premium":float(x[6]),"status":x[7]} for x in renew],
+ "products":[{"id":x[0],"name":x[1]} for x in products],
+ "teams":[{"id":x[0],"name":x[1]} for x in teams],
+ "units":[{"id":x[0],"name":x[1]} for x in units]
+}
+(root/"data"/"dashboard_data.json").write_text(json.dumps(dashboard_data,ensure_ascii=False,separators=(",",":")),encoding="utf-8")
+\n# Workbook Excel analítico: tabelas completas, indicadores e orientações.
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.worksheet.table import Table, TableStyleInfo
@@ -171,10 +182,10 @@ pt=PDFTable(summary_data,colWidths=[8*cm,5*cm]); pt.setStyle(TableStyle([("BACKG
 story += [Paragraph("Indicadores derivados da base",styles["H2N"])]
 kpi_data=[["Indicador","Resultado"],["Conversão por coorte",f"{sum(x[6]=='Emitida' for x in props)/len(props):.1%}"],["Prêmio emitido",f"R$ {sum(float(x[6]) for x in policies):,.2f}"],["Taxa de renovação",f"{sum(x[7]=='Renovada' for x in renew)/len(renew):.1%}"]]
 kt=PDFTable(kpi_data,colWidths=[8*cm,5*cm]); kt.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),colors.HexColor("#159B91")),("TEXTCOLOR",(0,0),(-1,0),colors.white),("GRID",(0,0),(-1,-1),.4,colors.HexColor("#D7E0E8")),("PADDING",(0,0),(-1,-1),7)])); story += [kt,PageBreak()]
-story += [Paragraph("3. Arquitetura e tecnologias",styles["H2N"]),Paragraph("<b>Dados:</b> CSV e planilha Excel com tabelas fato e dimensões.<br/><b>Preparação:</b> script Python reproduzível e validações de consistência.<br/><b>Modelagem:</b> calendário, mês, produto, equipe e unidade; fatos de propostas, apólices e renovações; metas.<br/><b>Visualização:</b> dashboard HTML estático de demonstração e estrutura de medidas DAX para evolução no Power BI.<br/><b>Interpretação:</b> regras determinísticas, sem integração com IA generativa.",styles["BodyText"])]
+story += [Paragraph("3. Arquitetura e tecnologias",styles["H2N"]),Paragraph("<b>Dados:</b> CSV e planilha Excel com tabelas fato e dimensões.<br/><b>Preparação:</b> script Python reproduzível e validações de consistência.<br/><b>Modelagem:</b> calendário, mês, produto, equipe e unidade; fatos de propostas, apólices e renovações; metas.<br/><b>Visualização:</b> dashboard HTML interativo com filtros por competência, produto, equipe e unidade e estrutura de medidas DAX para evolução no Power BI.<br/><b>Interpretação:</b> regras determinísticas, sem integração com IA generativa.",styles["BodyText"])]
 story += [Paragraph("4. Materiais entregues",styles["H2N"]),Paragraph("• Dashboard web publicado no GitHub Pages.<br/>• Base sintética em CSV, com dicionário de dados.<br/>• Planilha Excel analítica com dez tabelas e visão executiva.<br/>• Medidas DAX iniciais e orientação de relacionamentos.<br/>• Script de geração e validação automatizada.<br/>• Documentação técnica e este relatório de portfólio.",styles["BodyText"])]
 story += [Paragraph("5. Limitações e próximos passos",styles["H2N"]),Paragraph("A demonstração web é estática e não possui filtros operacionais. Não há arquivo Power BI (.pbix) nesta entrega; a montagem final do relatório requer Power BI Desktop. Não há backend, autenticação, conexão com APIs ou sistemas corporativos. Os gráficos web são demonstrativos e não substituem a análise detalhada no Power BI.",styles["BodyText"])]
 story += [Spacer(1,10),Paragraph("<b>Uso responsável:</b> os dados, nomes, equipes, unidades, valores e resultados são inteiramente sintéticos. Qualquer adaptação a um contexto real exige autorização, governança, validação, segurança e avaliação regulatória.",styles["SmallN"])]
 doc.build(story)
-assert pdf_path.stat().st_size>3000 and xlsx_path.stat().st_size>5000
+assert pdf_path.stat().st_size>3000 and xlsx_path.stat().st_size>5000 and (root/'data'/'dashboard_data.json').stat().st_size>10000
 print(f"EXTRAS OK: Excel={xlsx_path.stat().st_size} bytes; PDF={pdf_path.stat().st_size} bytes; planilhas={len(check.sheetnames) if False else 11}")

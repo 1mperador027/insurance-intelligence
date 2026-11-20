@@ -1,24 +1,74 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Insurance Intelligence | Dashboard demonstrativo</title>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Insurance Intelligence | Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <style>
-:root{--navy:#10243b;--teal:#159b91;--blue:#4b83c3;--bg:#f3f6fa;--ink:#172b42;--muted:#66788a}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}header{background:linear-gradient(120deg,#10243b,#1b4564);color:white;padding:28px max(20px,calc((100% - 1120px)/2))}header small{letter-spacing:2px;color:#a9c5d8;font-weight:700}h1{margin:4px 0;font-size:28px}.sub{color:#d2e0ea}main{max-width:1120px;margin:24px auto;padding:0 18px}.notice{background:#fff7e8;border:1px solid #f1d5a5;padding:14px 16px;border-radius:12px;margin-bottom:18px}.kpis,.charts{display:grid;gap:14px}.kpis{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:16px}.card,.chart{background:white;border:1px solid #e4eaf0;border-radius:14px;padding:17px;box-shadow:0 6px 20px #10243b0c}.kpi-label{font-size:12px;color:var(--muted)}.kpi{font-size:27px;font-weight:750;margin-top:6px}.charts{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.chart h2{font-size:16px;margin:0 0 12px}.chart canvas{max-height:270px}.foot{color:var(--muted);font-size:12px;margin:22px 2px 36px}
-</style></head><body><header><small>PROJETO INDEPENDENTE • PORTFÓLIO EDUCACIONAL</small><h1>Insurance Intelligence</h1><div class="sub">Inteligência Comercial e Gestão Estratégica de Seguros</div></header>
-<main><div class="notice"><b>Transparência:</b> demonstração educacional com dados fictícios. Não possui vínculo, patrocínio ou integração com o Itaú ou qualquer instituição financeira. Indicadores abaixo são exemplos sintéticos para ilustrar a interface.</div>
-<div style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px">
-<a href="../data/insurance_intelligence_csv.zip" download style="display:inline-block;background:#159b91;color:#fff;text-decoration:none;font-weight:700;padding:11px 16px;border-radius:9px">Baixar base CSV para Power BI</a>
-<a href="../data/Insurance_Intelligence_Base_Analitica.xlsx" download style="display:inline-block;background:#fff;color:#10243b;text-decoration:none;font-weight:700;padding:11px 16px;border:1px solid #dbe3eb;border-radius:9px">Baixar planilha Excel</a>
-<a href="../docs/Projeto_Insurance_Intelligence_Portfolio.pdf" style="display:inline-block;background:#fff;color:#10243b;text-decoration:none;font-weight:700;padding:11px 16px;border:1px solid #dbe3eb;border-radius:9px">Baixar portfólio PDF</a>
-<a href="../docs/ARQUITETURA_E_MODELO.md" style="display:inline-block;background:#fff;color:#10243b;text-decoration:none;font-weight:700;padding:11px 16px;border:1px solid #dbe3eb;border-radius:9px">Ver arquitetura e modelo</a>
-<a href="../power-bi/Medidas_DAX_PowerBI.txt" style="display:inline-block;background:#fff;color:#10243b;text-decoration:none;font-weight:700;padding:11px 16px;border:1px solid #dbe3eb;border-radius:9px">Consultar medidas DAX</a>
+:root{--navy:#10243b;--teal:#159b91;--blue:#4b83c3;--bg:#f3f6fa;--ink:#172b42;--muted:#66788a}*{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}header{background:linear-gradient(120deg,#10243b,#1b4564);color:white;padding:28px max(20px,calc((100% - 1120px)/2))}header small{letter-spacing:2px;color:#a9c5d8;font-weight:700}h1{margin:4px 0;font-size:28px}.sub{color:#d2e0ea}main{max-width:1120px;margin:24px auto;padding:0 18px}.notice{background:#fff7e8;border:1px solid #f1d5a5;padding:14px 16px;border-radius:12px;margin-bottom:18px}.filters,.kpis,.charts{display:grid;gap:14px}.filters{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));background:white;padding:16px;border-radius:14px;margin-bottom:16px}.filters label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}.filters select{width:100%;padding:10px;border:1px solid #dbe3eb;border-radius:8px;background:white}.kpis{grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-bottom:16px}.card,.chart{background:white;border:1px solid #e4eaf0;border-radius:14px;padding:17px;box-shadow:0 6px 20px #10243b0c}.kpi-label{font-size:12px;color:var(--muted)}.kpi{font-size:27px;font-weight:750;margin-top:6px}.charts{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.chart h2{font-size:16px;margin:0 0 12px}.chart canvas{max-height:270px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}.actions a{display:inline-block;background:white;color:#10243b;text-decoration:none;font-weight:700;padding:11px 14px;border:1px solid #dbe3eb;border-radius:9px}.actions a.primary{background:var(--teal);color:white;border-color:var(--teal)}.foot{color:var(--muted);font-size:12px;margin:22px 2px 36px}.status{font-size:12px;color:var(--muted);margin:0 0 12px}.insight{background:#eaf3f5;border-left:4px solid var(--teal);padding:13px 15px;border-radius:8px;margin:16px 0}
+</style></head><body>
+<header><small>PROJETO INDEPENDENTE • PORTFÓLIO EDUCACIONAL</small><h1>Insurance Intelligence</h1><div class="sub">Inteligência Comercial e Gestão Estratégica de Seguros</div></header>
+<main>
+<div class="notice"><b>Transparência:</b> projeto independente e educacional, com dados inteiramente fictícios. Sem vínculo, patrocínio ou integração com o Itaú ou qualquer instituição financeira.</div>
+<div class="actions">
+<a class="primary" href="../data/insurance_intelligence_csv.zip" download>Baixar base CSV para Power BI</a>
+<a href="../data/Insurance_Intelligence_Base_Analitica.xlsx" download>Baixar planilha Excel</a>
+<a href="../docs/Projeto_Insurance_Intelligence_Portfolio.pdf">Baixar portfólio PDF</a>
+<a href="../power-bi/Medidas_DAX_PowerBI.txt">Medidas DAX</a>
+<a href="../docs/ARQUITETURA_E_MODELO.md">Arquitetura</a>
 </div>
-<section class="kpis"><div class="card"><div class="kpi-label">Prêmio emitido (simulado)</div><div class="kpi">R$ 1,28 mi</div></div><div class="card"><div class="kpi-label">Apólices emitidas</div><div class="kpi">779</div></div><div class="card"><div class="kpi-label">Propostas registradas</div><div class="kpi">1.500</div></div><div class="card"><div class="kpi-label">Conversão demonstrativa</div><div class="kpi">51,9%</div></div></section>
-<section class="charts"><div class="chart"><h2>Produção mensal simulada</h2><canvas id="monthly"></canvas></div><div class="chart"><h2>Composição ilustrativa por produto</h2><canvas id="products"></canvas></div><div class="chart"><h2>Status das propostas</h2><canvas id="funnel"></canvas></div><div class="chart"><h2>Status de renovação simulado</h2><canvas id="renewals"></canvas></div></section>
-<div class="foot">Versão web resumida e estática de demonstração. Os gráficos mensais e a composição por produto são ilustrativos; os status de propostas e renovação reproduzem as quantidades da base sintética. Para exploração analítica detalhada, utilize a base CSV no Power BI. A leitura inteligente não usa IA generativa.</div></main>
+<div class="status" id="loadStatus">Carregando base demonstrativa...</div>
+<section class="filters">
+<div><label for="period">Competência</label><select id="period"><option value="all">Todo o período</option></select></div>
+<div><label for="product">Produto</label><select id="product"><option value="all">Todos os produtos</option></select></div>
+<div><label for="team">Equipe</label><select id="team"><option value="all">Todas as equipes</option></select></div>
+<div><label for="unit">Unidade</label><select id="unit"><option value="all">Todas as unidades</option></select></div>
+</section>
+<section class="kpis">
+<div class="card"><div class="kpi-label">Prêmio emitido</div><div class="kpi" id="kpiPremium">—</div></div>
+<div class="card"><div class="kpi-label">Apólices emitidas</div><div class="kpi" id="kpiPolicies">—</div></div>
+<div class="card"><div class="kpi-label">Propostas registradas</div><div class="kpi" id="kpiProposals">—</div></div>
+<div class="card"><div class="kpi-label">Conversão por coorte</div><div class="kpi" id="kpiConversion">—</div></div>
+</section>
+<div class="insight" id="insight">A leitura gerencial será calculada a partir dos dados filtrados.</div>
+<section class="charts">
+<div class="chart"><h2>Prêmio emitido por mês</h2><canvas id="monthly"></canvas></div>
+<div class="chart"><h2>Prêmio por produto</h2><canvas id="products"></canvas></div>
+<div class="chart"><h2>Status das propostas</h2><canvas id="funnel"></canvas></div>
+<div class="chart"><h2>Status das renovações</h2><canvas id="renewals"></canvas></div>
+</section>
+<div class="foot">Indicadores calculados a partir de uma base sintética reproduzível. Conversão considera o status das propostas filtradas. Os insights são regras determinísticas, não IA generativa. Para análise no Power BI, utilize os arquivos CSV e as medidas DAX.</div>
+</main>
 <script>
-const labels=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-new Chart(document.getElementById('monthly'),{type:'bar',data:{labels,datasets:[{label:'Prêmio (R$ mil)',data:[82,91,95,88,102,110,98,115,108,121,126,144],backgroundColor:'#159b91'}]},options:{responsive:true,plugins:{legend:{display:false}}}});
-new Chart(document.getElementById('products'),{type:'doughnut',data:{labels:['Vida','Residencial','Prestamista','Auto','Outros'],datasets:[{data:[34,18,22,16,10],backgroundColor:['#159b91','#4b83c3','#ed9b45','#8067a8','#9aa9b8']}]},options:{responsive:true}});
-new Chart(document.getElementById('funnel'),{type:'bar',data:{labels:['Emitidas','Em análise','Não convertidas'],datasets:[{data:[779,283,438],backgroundColor:['#4b83c3','#ed9b45','#159b91']}]},options:{indexAxis:'y',plugins:{legend:{display:false}}}});
-new Chart(document.getElementById('renewals'),{type:'doughnut',data:{labels:['Renovadas','Pendentes','Canceladas'],datasets:[{data:[284,83,53],backgroundColor:['#159b91','#ed9b45','#c75a5a']}]},options:{responsive:true}});
+(async()=>{
+const el=id=>document.getElementById(id);
+const money=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
+const number=v=>new Intl.NumberFormat('pt-BR').format(v);
+try{
+ const response=await fetch('../data/dashboard_data.json');
+ if(!response.ok) throw new Error('Não foi possível carregar a base.');
+ const db=await response.json();
+ const monthNames=['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+ const fill=(id,items)=>items.forEach(x=>{const o=document.createElement('option');o.value=x.id;o.textContent=x.name;el(id).appendChild(o)});
+ [...new Set(db.proposals.map(x=>x.date.slice(0,7)))].sort().forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;el('period').appendChild(o)});
+ fill('product',db.products);fill('team',db.teams);fill('unit',db.units);
+ const palette=['#159b91','#4b83c3','#ed9b45','#8067a8','#9aa9b8'];
+ const charts={};
+ const draw=(id,type,labels,values)=>{if(charts[id]){charts[id].data.labels=labels;charts[id].data.datasets[0].data=values;charts[id].update();return}
+ charts[id]=new Chart(el(id),{type,data:{labels,datasets:[{data:values,backgroundColor:type==='line'?'#159b91':palette,borderColor:type==='line'?'#159b91':undefined,borderWidth:1}]},options:{responsive:true,plugins:{legend:{display:type==='doughnut'}},scales:(type==='bar'||type==='line')?{y:{beginAtZero:true}}:{}}})};
+ function update(){
+  const period=el('period').value,product=el('product').value,team=el('team').value,unit=el('unit').value;
+  const match=x=>(period==='all'||x.date.slice(0,7)===period)&&(product==='all'||x.product===product)&&(team==='all'||x.team===team)&&(unit==='all'||x.unit===unit);
+  const props=db.proposals.filter(match),pol=db.policies.filter(match),ren=db.renewals.filter(match);
+  const emitted=props.filter(x=>x.status==='Emitida').length,premium=pol.reduce((a,x)=>a+x.premium,0),conv=props.length?emitted/props.length:0;
+  el('kpiPremium').textContent=money(premium);el('kpiPolicies').textContent=number(pol.length);el('kpiProposals').textContent=number(props.length);el('kpiConversion').textContent=(conv*100).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%';
+  const renewed=ren.filter(x=>x.status==='Renovada').length;
+  el('insight').textContent=props.length?'Leitura gerencial: '+number(props.length)+' propostas no recorte, conversão de '+(conv*100).toFixed(1).replace('.',',')+'% e '+number(renewed)+' renovações concluídas em '+number(ren.length)+' eventos analisados.':'Nenhum registro encontrado para os filtros selecionados.';
+  const monthly=Array.from({length:12},(_,i)=>pol.filter(x=>Number(x.date.slice(5,7))===i+1).reduce((a,x)=>a+x.premium,0));
+  const pnames=db.products.map(x=>x.name),byProd=db.products.map(x=>pol.filter(p=>p.product===x.id).reduce((a,p)=>a+p.premium,0));
+  const sLabels=['Emitida','Em análise','Não convertida'],sValues=sLabels.map(s=>props.filter(p=>p.status===s).length);
+  const rLabels=['Renovada','Pendente','Cancelada'],rValues=rLabels.map(s=>ren.filter(x=>x.status===s).length);
+  draw('monthly','bar',monthNames,monthly);draw('products','doughnut',pnames,byProd);draw('funnel','bar',sLabels,sValues);draw('renewals','doughnut',rLabels,rValues);
+ }
+ ['period','product','team','unit'].forEach(id=>el(id).addEventListener('change',update));
+ update();el('loadStatus').textContent='Base carregada • filtros funcionais • valores sintéticos';
+}catch(e){el('loadStatus').textContent='Falha ao carregar a base: '+e.message;el('insight').textContent='Atualize a página ou consulte os arquivos CSV no repositório.';console.error(e)}
+})();
 </script></body></html>
