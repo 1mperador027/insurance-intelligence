@@ -1,11 +1,7 @@
 -- INSURANCE INTELLIGENCE | MEDIDAS DAX INICIAIS
--- Relacionamentos mensais:
--- DimMes[AnoMes] 1:* FatoPropostas[AnoMes]
--- DimMes[AnoMes] 1:* FatoApolices[AnoMes]
--- DimMes[AnoMes] 1:* FatoRenovacoes[AnoMes]
--- DimMes[AnoMes] 1:* Metas[AnoMes]
--- DimProduto[ProdutoID] 1:* fatos e Metas[ProdutoID]
--- DimEquipe[EquipeID] e DimUnidade[UnidadeID] 1:* fatos correspondentes.
+-- Relacionamentos: DimMes[AnoMes] 1:* tabelas fato e Metas;
+-- DimProduto[ProdutoID], DimEquipe[EquipeID] e DimUnidade[UnidadeID]
+-- relacionam-se às tabelas fato correspondentes.
 
 Propostas = COUNTROWS(FatoPropostas)
 Apolices Emitidas = COUNTROWS(FatoApolices)
