@@ -1,7 +1,7 @@
 # Como abrir e demonstrar o Insurance Intelligence
 
 ## Dashboard web
-Abra a [demonstração publicada](https://1mperador027.github.io/insurance-intelligence/). Ela apresenta KPIs e gráficos sintéticos estáticos. Não há filtros operacionais nesta versão web.
+Abra a [demonstração publicada](https://1mperador027.github.io/insurance-intelligence/). Os filtros de competência, produto, equipe e unidade atualizam os KPIs e os gráficos a partir da base sintética.
 
 ## Arquivos para download
 - [Planilha analítica Excel](../data/Insurance_Intelligence_Base_Analitica.xlsx).
@@ -17,4 +17,4 @@ Abra a [demonstração publicada](https://1mperador027.github.io/insurance-intel
 6. Salve o relatório como `Insurance_Intelligence.pbix` no seu computador.
 
 ## Transparência
-A base é inteiramente sintética. Os indicadores e gráficos do dashboard web são demonstrativos; a análise detalhada deve ser construída no Power BI. A leitura inteligente usa regras determinísticas, não IA generativa. Não há integração com sistemas ou APIs externas. O arquivo PBIX não está incluído nesta versão.
+A base é inteiramente sintética. O dashboard web é interativo, mas não substitui a análise detalhada no Power BI. A leitura inteligente usa regras determinísticas, não IA generativa. Não há integração com sistemas ou APIs externas. O arquivo PBIX não está incluído nesta versão.

@@ -10,11 +10,11 @@ A conversão demonstrativa considera propostas criadas no período selecionado e
 Os textos de insight são gerados por regras determinísticas. Não há modelo generativo, treinamento, inferência por IA externa ou integração com serviços de IA.
 
 ## Limitações
-- Sem arquivo .pbix nesta entrega; o Excel analítico e o relatório PDF são gerados automaticamente no deploy.
+- Sem arquivo .pbix nesta entrega; a planilha Excel analítica e o relatório PDF são gerados automaticamente no deploy.
 - Sem conexão com sistemas ou APIs externas.
 - Sem autenticação ou backend.
-- A publicação web é estática e realizada pelo GitHub Pages via GitHub Actions.
-- Os gráficos do dashboard web são ilustrativos; a exploração analítica detalhada deve ser feita no Power BI.
+- A publicação é hospedada no GitHub Pages e gerada por GitHub Actions.
+- O dashboard tem filtros funcionais por competência, produto, equipe e unidade, com indicadores e gráficos calculados a partir da base sintética.
 - Indicadores e regras servem apenas para demonstração.
 
 ## Independência institucional
