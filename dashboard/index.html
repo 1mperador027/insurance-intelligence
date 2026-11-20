@@ -146,6 +146,8 @@ try{
   el('executiveMode').setAttribute('aria-pressed',String(executive));
   el('managementMode').setAttribute('aria-pressed',String(!executive));
   el('viewTitle').textContent=executive?'Visão Executiva':'Visão Gerencial';
+  document.querySelector('.nav-item.active').lastChild.textContent=executive?' Visão Executiva':' Visão Gerencial';
+  document.querySelector('.crumb b').textContent=executive?'Visão Executiva':'Visão Gerencial';
   el('viewDescription').textContent=executive?'Leitura estratégica dos resultados, indicadores e oportunidades do negócio.':'Acompanhamento da operação, produção, conversão, renovações e desempenho das equipes.';
   el('kpiSectionTitle').textContent=executive?'Indicadores estratégicos do negócio':'Indicadores-chave de desempenho';
   el('chartSectionTitle').textContent=executive?'Visão consolidada do negócio':'Desempenho comercial e operacional';
