@@ -1,0 +1,25 @@
+-- INSURANCE INTELLIGENCE | MEDIDAS DAX INICIAIS
+-- Relacionamentos mensais:
+-- DimMes[AnoMes] 1:* FatoPropostas[AnoMes]
+-- DimMes[AnoMes] 1:* FatoApolices[AnoMes]
+-- DimMes[AnoMes] 1:* FatoRenovacoes[AnoMes]
+-- DimMes[AnoMes] 1:* Metas[AnoMes]
+-- DimProduto[ProdutoID] 1:* fatos e Metas[ProdutoID]
+-- DimEquipe[EquipeID] e DimUnidade[UnidadeID] 1:* fatos correspondentes.
+
+Propostas = COUNTROWS(FatoPropostas)
+Apolices Emitidas = COUNTROWS(FatoApolices)
+Premio Emitido = SUM(FatoApolices[PremioEmitido])
+Premio Medio = DIVIDE([Premio Emitido], [Apolices Emitidas])
+Taxa Conversao = DIVIDE([Apolices Emitidas], [Propostas])
+Renovacoes Registradas = COUNTROWS(FatoRenovacoes)
+Renovacoes Concluidas =
+CALCULATE(COUNTROWS(FatoRenovacoes), FatoRenovacoes[StatusRenovacao] = "Renovada")
+Taxa Renovacao = DIVIDE([Renovacoes Concluidas], [Renovacoes Registradas])
+Renovacoes Pendentes =
+CALCULATE(COUNTROWS(FatoRenovacoes), FatoRenovacoes[StatusRenovacao] = "Pendente")
+Cancelamentos Renovacao =
+CALCULATE(COUNTROWS(FatoRenovacoes), FatoRenovacoes[StatusRenovacao] = "Cancelada")
+Meta Premio = SUM(Metas[MetaPremio])
+Atingimento Meta = DIVIDE([Premio Emitido], [Meta Premio])
+Gap Meta = [Premio Emitido] - [Meta Premio]
