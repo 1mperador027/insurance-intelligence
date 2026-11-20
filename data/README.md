@@ -1,24 +1,15 @@
 # Base de dados — Insurance Intelligence
 
-**[Baixar pacote CSV para Power BI](insurance_intelligence_csv.zip)**
+**[Baixar pacote CSV para Power BI](https://1mperador027.github.io/insurance-intelligence/data/insurance_intelligence_csv.zip)**
 
-Base demonstrativa com dados inteiramente fictícios/sintéticos.
+O ZIP é gerado automaticamente no deploy pelo script `scripts/generate_synthetic_data.py`. A geração valida as contagens, unicidade dos identificadores e integridade das referências antes da publicação.
 
-## Conteúdo
-- `FatoPropostas`: 1.500 propostas.
-- `FatoApolices`: 779 apólices.
-- `FatoRenovacoes`: 420 eventos.
+- FatoPropostas: 1.500 registros.
+- FatoApolices: 779 registros.
+- FatoRenovacoes: 420 eventos.
 - Dimensões de calendário, mês, produto, equipe e unidade.
-- Metas mensais por produto.
-- Dicionário de dados.
+- Metas mensais por produto e dicionário de dados.
 
-## Integridade verificada
-- Identificadores de propostas, apólices e renovações sem duplicidade.
-- Todas as apólices referenciam uma proposta existente.
-- Todas as renovações referenciam uma apólice existente.
-- As 779 propostas com status `Emitida` correspondem às 779 apólices da base.
+Extraia o ZIP e importe os CSVs no Power BI Desktop. Consulte [arquitetura do modelo](../docs/ARQUITETURA_E_MODELO.md) e [medidas DAX](../power-bi/Medidas_DAX_PowerBI.txt).
 
-## Importação
-Extraia o ZIP e importe os arquivos CSV no Power BI Desktop. Configure os relacionamentos conforme [a arquitetura do modelo](../docs/ARQUITETURA_E_MODELO.md) e utilize as [medidas DAX](../power-bi/Medidas_DAX_PowerBI.txt).
-
-**Aviso:** os registros não representam clientes, operações, resultados ou dados de qualquer instituição financeira ou seguradora.
+Todos os registros são fictícios e não representam clientes, operações, resultados ou dados de qualquer instituição financeira ou seguradora.

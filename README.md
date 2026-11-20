@@ -3,45 +3,27 @@
 
 > **Projeto independente, educacional e experimental.** Desenvolvido para aprendizagem e demonstração de conceitos de Business Intelligence, análise de dados e aplicações de IA no mercado de seguros.
 
-O Insurance Intelligence simula uma operação de seguros com dados inteiramente fictícios para explorar indicadores comerciais, desempenho de equipes, conversão de propostas, gestão de apólices e renovações.
+O projeto simula uma operação de seguros com dados inteiramente fictícios para explorar indicadores comerciais, desempenho de equipes, conversão de propostas, gestão de apólices e renovações.
 
-## Demonstração
-- **[Abrir dashboard demonstrativo](https://1mperador027.github.io/insurance-intelligence/)**.
-- **[Baixar base CSV para Power BI](data/insurance_intelligence_csv.zip)**.
-- **[Consultar documentação de arquitetura](docs/ARQUITETURA_E_MODELO.md)**.
-- **[Consultar medidas DAX](power-bi/Medidas_DAX_PowerBI.txt)**.
+## Demonstração e materiais
+- **[Abrir dashboard](https://1mperador027.github.io/insurance-intelligence/)**.
+- **[Baixar base CSV para Power BI](https://1mperador027.github.io/insurance-intelligence/data/insurance_intelligence_csv.zip)** — pacote gerado e validado automaticamente durante a publicação.
+- [Arquitetura e modelo](docs/ARQUITETURA_E_MODELO.md).
+- [Medidas DAX](power-bi/Medidas_DAX_PowerBI.txt).
+- [Texto sugerido para LinkedIn](docs/TEXTO_LINKEDIN.md).
 
-## Base analítica disponível
-O pacote CSV contém:
-- 1.500 propostas;
-- 779 apólices emitidas;
-- 420 eventos de renovação;
-- dimensões de calendário, mês, produto, equipe e unidade;
-- metas mensais por produto;
-- dicionário de dados.
+## Base analítica
+O fluxo de publicação gera um pacote reproduzível com 1.500 propostas, 779 apólices, 420 eventos de renovação, dimensões de calendário, mês, produto, equipe e unidade, metas mensais e dicionário de dados. O script de geração está em `scripts/generate_synthetic_data.py`.
 
-A base foi conferida quanto à unicidade dos identificadores, integridade das referências entre propostas, apólices e renovações e consistência da quantidade de propostas emitidas. Os dados são sintéticos e não representam uma operação real.
-
-## O que o protótipo demonstra
-- Indicadores de produção, conversão, prêmio médio e renovações;
-- visualizações comerciais e de carteira;
-- estrutura dimensional para evolução no Power BI;
-- medidas DAX iniciais;
-- comentários gerenciais baseados em regras determinísticas.
-
-## Tecnologias e conceitos
-Excel, CSV, Power BI (estrutura preparada), DAX, modelagem dimensional, HTML, JavaScript, Business Intelligence e Inteligência Artificial aplicada aos negócios.
+## Tecnologias
+CSV, Excel, Power BI (estrutura preparada), DAX, modelagem dimensional, HTML, JavaScript e Business Intelligence.
 
 ## Premissas e transparência
 - Todos os registros, nomes, unidades, equipes, valores e resultados são **fictícios e sintéticos**.
-- O projeto não utiliza dados reais de clientes, colaboradores, instituições ou operações.
-- Não possui vínculo institucional, patrocínio, endosso ou integração com o Itaú ou qualquer outra instituição financeira.
-- Não se conecta a sistemas corporativos, APIs privadas ou bases externas.
-- A leitura inteligente é baseada em regras fixas; não há modelo de IA generativa integrado.
-- O arquivo Power BI (.pbix), autenticação, backend e integrações operacionais não fazem parte desta versão.
+- Sem dados reais de clientes, colaboradores, instituições ou operações.
+- Sem vínculo institucional, patrocínio, endosso ou integração com o Itaú ou qualquer outra instituição financeira.
+- Sem conexão com sistemas corporativos, APIs privadas ou bases externas.
+- A leitura inteligente usa regras fixas; não há IA generativa integrada.
+- Esta versão não inclui arquivo Power BI (.pbix), backend, autenticação ou integração operacional.
 
-## Próximas evoluções
-Disponibilizar a planilha Excel e o PDF de portfólio diretamente no repositório, aprofundar a documentação e montar o arquivo PBIX com validação de relacionamentos e medidas.
-
----
 **Insurance Intelligence — projeto independente de aprendizagem.**
