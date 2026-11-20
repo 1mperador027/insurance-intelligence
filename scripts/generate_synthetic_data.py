@@ -67,7 +67,8 @@ dashboard_data={
  "units":[{"id":x[0],"name":x[1]} for x in units]
 }
 (root/"data"/"dashboard_data.json").write_text(json.dumps(dashboard_data,ensure_ascii=False,separators=(",",":")),encoding="utf-8")
-\n# Workbook Excel analítico: tabelas completas, indicadores e orientações.
+
+# Workbook Excel analítico: tabelas completas, indicadores e orientações.
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.worksheet.table import Table, TableStyleInfo
